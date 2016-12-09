@@ -12,16 +12,7 @@ var Article = require("./models/Article.js");
 // Mongoose mpromise deprecated - use bluebird promises
 var Promise = require("bluebird");
 
-
-
-// Our model controllers (rather than routes)
-var application_controller = require('./controllers/application_controllers');
-//var jobs_controller = require('./controllers/articles_controllers');
-//var users_controller = require('./controllers/notes_controllers');
-
-
 mongoose.Promise = Promise;
-
 
 // Initialize Express
 var app = express();
@@ -49,10 +40,17 @@ db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 
+// Our model controllers (rather than routes)
+var application_controller = require('./controllers/application_controllers');
+var articles_controller = require('./controllers/articles_controllers');
+//var users_controller = require('./controllers/notes_controllers');
+
 app.use('/', application_controller);
+app.use('/articles',articles_controller )
 
-
+app.set('port', process.env.PORT || 4000);
 // Listen on port 3000
-app.listen(3000, function() {
-  console.log("App running on port 3000!");
-});
+ var server = app.listen(app.get('port'), function() {
+  	// then save a log of the listening to our debugger.
+    console.log('Express server listening on port ' + server.address().port);
+  });

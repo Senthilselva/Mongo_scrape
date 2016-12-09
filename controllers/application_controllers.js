@@ -14,6 +14,11 @@ var Article = require("../models/Article.js");
 
 var router  = express.Router();
 
+router.get('/',function(req,res){
+  res.sendFile(path.join(__dirname + '/../public/try.html'));
+})
+
+
 router.get('/scrape',function(req,res){
   console.log("hahahahahaha");
   // Run request to grab the HTML from awwards's clean website section
