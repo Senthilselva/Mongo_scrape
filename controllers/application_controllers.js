@@ -56,7 +56,7 @@ router.get('/scrape',function(req,res){
   // // With each link scraped, log the result to the console
    console.log(result);
 
- res.json(result);
+ res.redirect('/');
 
 });
 });
