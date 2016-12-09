@@ -1,4 +1,4 @@
-console.log("application")
+//console.log("application")
 var express = require('express');
 var path = require('path');
 
@@ -15,12 +15,11 @@ var Article = require("../models/Article.js");
 var router  = express.Router();
 
 router.get('/',function(req,res){
-  res.sendFile(path.join(__dirname + '/../public/try.html'));
+  res.sendFile(path.join(__dirname + '/../public/home.html'));
 })
 
 
 router.get('/scrape',function(req,res){
-  console.log("hahahahahaha");
   // Run request to grab the HTML from awwards's clean website section
   request("http://www.npr.org", function(error, response, html) {
   // Load the HTML into cheerio

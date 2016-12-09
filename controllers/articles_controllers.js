@@ -1,13 +1,10 @@
-console.log("article")
 var express = require('express');
 var path = require('path');
 
 var Article = require("../models/Article.js");
-console.log("article")
 
 var router  = express.Router();
 
-console.log("article")
 
 
 router.get('/',function(req,res){
