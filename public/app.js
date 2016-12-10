@@ -2,7 +2,7 @@ var articles=[];
 
 $.getJSON("/articles", function(data) {
   articles = data;
-  console.log(articles);
+  //console.log(articles);
   populateCard(2);
 });
 
@@ -19,6 +19,7 @@ var populateCard = function(newNum){
   $('.pageLink').attr('href', articles[newNum].link);
   $(".pageLink").attr("data-num",newNum);
   $('.saveNotes').attr("data-id",articles[newNum]._id);
+  addnotes(articles[newNum]._id);
 }
 
 $('.saveNotes').on('click',function(){
@@ -36,8 +37,33 @@ $('.saveNotes').on('click',function(){
     // With that done
     .done(function(data) {
       // Log the response
-      console.log(data);
+      //console.log(data);
       // Empty the notes section
-      $("#notes").empty();
+      //var va = $("#noteInput").val();
+     // console.log(va)
+      $('#noteInput').val(' ');
+      $('#noteInput').trigger('autoresize');
+      var currentNum = $(".pageLink").attr("data-num");
+	  populateCard(parseInt(currentNum));
     });	
 })
+
+var addnotes = function(articleId){
+
+	$.ajax({
+    method: "GET",
+    url: "/articles/populated/" + articleId
+	}). done(function(data){
+		//console.log(data);
+		$('.oldNotes').empty();
+		$('.oldNotes').append('<ol id="noteList"> </ol>')
+		for(var i=0; i < data[0].notes.length; i++){
+			//console.log(data[0].notes[i].note);
+			var liTag = $('<li>');
+			liTag.text(data[0].notes[i].note);
+			$('#noteList').append(liTag);
+
+		}
+	})
+
+}

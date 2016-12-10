@@ -64,7 +64,7 @@ router.get("/populated/:id", function(req, res) {
       }
       // Or, send our results to the browser, which will now include the books stored in the library
       else {
-      	console.log(doc);
+      	//console.log(doc);
         res.send(doc);
       }
     });
