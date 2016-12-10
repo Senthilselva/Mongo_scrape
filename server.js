@@ -27,7 +27,12 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://localhost/articleScrape");
+//mongoose.connect("mongodb://localhost/articleScrape");
+//mongolab-opaque-78017
+//mongoose.connect("mongolab-opaque-78017");
+//mongodb://heroku_jpgwjvcl:9l0e208b2degv6g02l6e7d4ma2@ds127988.mlab.com:27988/heroku_jpgwjvcl
+mongoose.connect("mongodb://heroku_jpgwjvcl:9l0e208b2degv6g02l6e7d4ma2@ds127988.mlab.com:27988/heroku_jpgwjvcl");
+
 var db = mongoose.connection;
 
 // Show any mongoose errors
@@ -43,7 +48,6 @@ db.once("open", function() {
 // Our model controllers (rather than routes)
 var application_controller = require('./controllers/application_controllers');
 var articles_controller = require('./controllers/articles_controllers');
-//var users_controller = require('./controllers/notes_controllers');
 
 app.use('/', application_controller);
 app.use('/articles',articles_controller )
