@@ -5,9 +5,9 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 
 
-// Requiring our Note and Article models
-var Note = require("./models/Note.js");
-var Article = require("./models/Article.js");
+// // Requiring our Note and Article models
+// var Note = require("./models/Note.js");
+// var Article = require("./models/Article.js");
 
 // Mongoose mpromise deprecated - use bluebird promises
 var Promise = require("bluebird");
