@@ -10,6 +10,7 @@ var cheerio = require("cheerio");
 var Promise = require("bluebird");
 
 // Requiring our Note and Article models
+var Note = require("../models/Note.js");
 var Article = require("../models/Article.js");
 
 var router  = express.Router();
@@ -20,6 +21,9 @@ router.get('/',function(req,res){
 
 
 router.get('/scrape',function(req,res){
+  Note.remove({});
+
+  //Article.remove({});
   // Run request to grab the HTML from awwards's clean website section
   request("http://www.npr.org", function(error, response, html) {
   // Load the HTML into cheerio
@@ -54,7 +58,7 @@ router.get('/scrape',function(req,res){
    });
 
   // // With each link scraped, log the result to the console
-   console.log(result);
+   //console.log(result);
 
  res.redirect('/');
 
