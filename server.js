@@ -27,11 +27,11 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://localhost/articleScrape");
+//mongoose.connect("mongodb://localhost/articleScrape");
 //mongolab-opaque-78017
 //mongoose.connect("mongolab-opaque-78017");
 //mongodb://heroku_jpgwjvcl:9l0e208b2degv6g02l6e7d4ma2@ds127988.mlab.com:27988/heroku_jpgwjvcl
-//mongoose.connect("mongodb://heroku_jpgwjvcl:9l0e208b2degv6g02l6e7d4ma2@ds127988.mlab.com:27988/heroku_jpgwjvcl");
+mongoose.connect("mongodb://heroku_jpgwjvcl:9l0e208b2degv6g02l6e7d4ma2@ds127988.mlab.com:27988/heroku_jpgwjvcl");
 
 var db = mongoose.connection;
 

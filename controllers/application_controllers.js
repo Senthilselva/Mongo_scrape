@@ -21,7 +21,7 @@ router.get('/',function(req,res){
 
 router.get('/scrape',function(req,res){
   Article.remove({}, function(err,removed) {
-console.log("ERRRRRRRRRRRRRRRRRRRRRRRR"+err);
+console.log("Error");
 });
   
   // Run request to grab the HTML from awwards's clean website section
