@@ -12,7 +12,6 @@ var Promise = require("bluebird");
 // Requiring our Note and Article models
 var Note = require("../models/Note.js");
 var Article = require("../models/Article.js");
-
 var router  = express.Router();
 
 router.get('/',function(req,res){
@@ -21,9 +20,10 @@ router.get('/',function(req,res){
 
 
 router.get('/scrape',function(req,res){
-  Note.remove({});
-
-  //Article.remove({});
+  Article.remove({}, function(err,removed) {
+console.log("ERRRRRRRRRRRRRRRRRRRRRRRR"+err);
+});
+  
   // Run request to grab the HTML from awwards's clean website section
   request("http://www.npr.org", function(error, response, html) {
   // Load the HTML into cheerio
@@ -37,7 +37,6 @@ router.get('/scrape',function(req,res){
       newNews.imgSrc = $(element).find('img').attr('src');
       newNews.article = $(element).find('.teaser').text();
       newNews.link = $(element).find("a").attr("href");
-
 
     // Using our Article model, create a new entry
       // This effectively passes the result object to the entry (and the title and link)
